@@ -1,6 +1,6 @@
 name: Deploy Docusaurus to GitHub Pages
 
-on:
+'on':
 push:
 branches:
 - main
@@ -17,13 +17,12 @@ cancel-in-progress: true
 
 jobs:
 build:
-name: Build Docusaurus
 runs-on: ubuntu-latest
 steps:
-  - name: Checkout repository
-    uses: actions/checkout@v4
 
-  - name: Configure Node.js
+- name: Checkout
+uses: actions/checkout@v4
+ - name: Setup Node.js
     uses: actions/setup-node@v4
     with:
       node-version: 20
@@ -32,25 +31,24 @@ steps:
   - name: Install dependencies
     run: npm ci
 
-  - name: Build website
+  - name: Build Docusaurus
     run: npm run build
 
-  - name: Configure GitHub Pages
+  - name: Configure Pages
     uses: actions/configure-pages@v5
 
-  - name: Upload website artifact
+  - name: Upload artifact
     uses: actions/upload-pages-artifact@v3
     with:
       path: build
+
 deploy:
-name: Deploy to GitHub Pages
 needs: build
 runs-on: ubuntu-latest
 environment:
-  name: github-pages
-  url: ${{ steps.deployment.outputs.page_url }}
-
+name: github-pages
+url: ${{ steps.deployment.outputs.page_url }}
 steps:
-  - name: Deploy website
-    id: deployment
-    uses: actions/deploy-pages@v4
+- name: Deploy
+id: deployment
+uses: actions/deploy-pages@v4
