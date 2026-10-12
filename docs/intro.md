@@ -21,3 +21,7 @@ GestorLocal es una aplicación web ficticia diseñada para facilitar la gestión
 ## Organización
 
 La documentación se divide en análisis de requisitos, diseño, implementación, pruebas y despliegue.
+
+## Estado del proyecto
+
+La documentación inicial de GestorLocal se ha publicado mediante GitHub Pages.
